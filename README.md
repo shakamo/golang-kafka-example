@@ -17,7 +17,7 @@
     * go run main.go
 
 #### Apache kafka のDocker環境構築
-    cd docker/kafka
+    cd docker
     docker-compose up -d
     docker-compose ps
     docker-compose down
