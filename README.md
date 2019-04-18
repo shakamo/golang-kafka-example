@@ -16,12 +16,15 @@
 4. 動作確認
     * go run main.go
 
-#### Apache kafka のDocker環境構築
+#### docker-conpose 環境構築
     cd docker
     docker-compose up -d
     docker-compose ps
     docker-compose down
 
+#### Golang Standard Project Layout
+    https://github.com/golang-standards/project-layout
+    https://qiita.com/sueken/items/87093e5941bfbc09bea8
 
 | headerA | headerB                |
 | ------- | ---------------------- |
