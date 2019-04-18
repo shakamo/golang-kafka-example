@@ -15,8 +15,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   db:
     # https://qiita.com/Manatee/items/58d0f98a15656ed65136
-    # build: ./mysql
-    image: mysql:5.7
+    build: ./mysql
     restart: always
     environment:
       MYSQL_DATABASE: sample_db
