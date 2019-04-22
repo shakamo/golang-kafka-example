@@ -14,6 +14,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   db:
+    container_name: mysql
     # https://qiita.com/Manatee/items/58d0f98a15656ed65136
     build: ./mysql
     restart: always
@@ -28,3 +29,21 @@ services:
       - ./mysql/initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql:/var/log/mysql
+  consumer:
+    build:
+      context: ./golang_consumer
+      args:
+        repository: "golang-kafka-example"
+    environment:
+      ENV: staging
+    volumes:
+      - ../:/go/src/golang-kafka-example
+  producer:
+    build: 
+      context: ./golang_producer
+      args:
+        repository: "golang-kafka-example"
+    environment:
+      ENV: staging
+    volumes:
+      - ../:/go/src/golang-kafka-example

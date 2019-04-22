@@ -26,6 +26,12 @@
     https://github.com/golang-standards/project-layout
     https://qiita.com/sueken/items/87093e5941bfbc09bea8
 
+#### MySQL
+    docker exec -it sample-project_db_1 bash
+    mysql -u user -p
+    use sample_db;
+    show tables;
+
 | headerA | headerB                |
 | ------- | ---------------------- |
 | short   | very very long content |

@@ -6,6 +6,7 @@ import (
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/Shopify/sarama"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -14,6 +15,19 @@ var (
 	maxRetry   = kingpin.Flag("maxRetry", "Retry limit").Default("5").Int()
 )
 
+func init() {
+	// do something here to set environment depending on an environment variable
+	// or command-line flag
+	a := "production"
+	fmt.Printf("(%s)あああああああ", a)
+	fmt.Printf("(%s)あああああああ", *env)
+	if *env == a {
+		log.SetFormatter(&log.JSONFormatter{})
+	} else {
+		// The TextFormatter is default, you don't actually have to do this.
+		log.SetFormatter(&log.TextFormatter{})
+	}
+}
 func main() {
 	kingpin.Parse()
 
@@ -41,4 +55,11 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("Message is stored in topic(%s)/partition(%d)/offset(%d)\n", *topic, partition, offset)
+
+	log.WithFields(log.Fields{
+		"animal": "walrus",
+	}).Info("A walrus appears")
+	log.WithFields(log.Fields{
+		"animal": *env,
+	}).Info("A walrus appears")
 }
